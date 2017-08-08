@@ -1,0 +1,7 @@
+.navbar-nav > li > a {
+    min-width: 120px;
+}
+.footer-text {
+    margin: 5px 0;
+    float: right;
+}

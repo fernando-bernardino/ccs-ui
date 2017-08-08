@@ -1,0 +1,14 @@
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav">
+    <li><a href="#">Cloud spaces</a></li>
+    <li><a href="#">Users</a></li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li>
+      <a>
+        <ng-content></ng-content>
+        &nbsp;<button (click)="onLogout()" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-off"></span></button>
+      </a>
+    </li>
+  </ul>
+</div>
