@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationCancel } from '@angular/router';
 
-import { AuthService } from './core/login/auth.service';
+import { AuthService } from './core/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -26,10 +26,7 @@ export class AppComponent implements OnInit {
     });
 
     this.router.events.subscribe((event) => {
-      console.log(event);
-
       if(event instanceof NavigationCancel) {
-
         if (this.authService.islogged()) {
           this.router.navigate(['']);
         } else {

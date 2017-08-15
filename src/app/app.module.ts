@@ -1,12 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { CloudspaceModule } from './cloudspace/cloudspace.module';
 
-import { AuthService } from './core/login/auth.service';
+import { AuthService } from './core/auth/auth.service';
+import { HttpService } from './core/http/http.service';
+import { RequestOptionsService } from './core/http/request-options.service';
 
 @NgModule({
   declarations: [
@@ -16,10 +19,13 @@ import { AuthService } from './core/login/auth.service';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    CloudspaceModule
+    CloudspaceModule,
+    HttpModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    HttpService,
+    { provide: RequestOptions, useClass: RequestOptionsService }
   ],
   bootstrap: [AppComponent]
 })
