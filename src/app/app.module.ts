@@ -24,8 +24,7 @@ import { RequestOptionsService } from './core/http/request-options.service';
   ],
   providers: [
     AuthService,
-    HttpService,
-    { provide: RequestOptions, useClass: RequestOptionsService }
+    HttpService
   ],
   bootstrap: [AppComponent]
 })

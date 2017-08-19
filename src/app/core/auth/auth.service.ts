@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions } from '@angular/http';
 
 import { User } from './user.model';
 import { HttpService } from '../http/http.service';
@@ -17,7 +17,8 @@ export class AuthService {
     constructor(
         private http: HttpService,
         private encoder: EncodeService,
-        private errorService: ErrorService) { }
+        private errorService: ErrorService,
+        private optionsService: RequestOptions) { }
 
     user: User = null;
 
@@ -39,13 +40,14 @@ export class AuthService {
             (response: Response) => {
 
                 //  set token & user info
-                this.setUser();
-
+                this.setUser(response.json());
+                
                 this.loggedIn.next(this.user.name);
+                this.http.setJwtToken(this.user.token);
             },
             (error) => {
                 this.errorService.setError("Invalid username or password");
-                //  clear token
+                this.http.clearJwtToken();
             }
         );
     }
@@ -58,11 +60,11 @@ export class AuthService {
         }
     }
 
-    setUser() {
+    setUser(json) {
         this.user = new User(
-            'user1', 
-            'Tony', 
-            'tony.bernardino@gmail.com',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2Rlb250aWNzLWRldi5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThlY2U0N2NhZDIwNzM0ZWNkMmFiYWVjIiwiYXVkIjoiNjZQbGhGN0w4SGYyTUVTRHRxcUo5Z2VBSm95bFVlaHMiLCJleHAiOjE1MDI4NjQ3MjQsImlhdCI6MTUwMjgyODcyNH0.GXEkFAl23d7hv03cfIPQT-AN2Zvew8mnp6lz0J3P4gM');
+            json.userId, 
+            json.userName, 
+            json.userEmail,
+            json.token);
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { CloudSpace } from '../cloudspace-model';
 
@@ -9,11 +10,13 @@ import { CloudSpace } from '../cloudspace-model';
 })
 export class CloudspacesComponent implements OnInit {
 
-  cloudspaces: CloudSpace [];
+  cloudspaces;
   
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.cloudspaces = this.route.snapshot.data['cloudspaces'];
+    console.log(this.cloudspaces);
   }
 
 }

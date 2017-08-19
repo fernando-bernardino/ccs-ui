@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { HttpService } from '../core/http/http.service';
 
 import { CloudspacesComponent } from './cloudspaces/cloudspaces.component';
-import { CloudSpaceResolve } from './cloudspaces/cloudspace-resolve';
 import { CloudspaceComponent } from './cloudspace/cloudspace.component';
 import { CloudspaceRoutingModule } from './cloudspace-routing.module';
 
@@ -15,12 +15,8 @@ import { CloudspaceRoutingModule } from './cloudspace-routing.module';
   ],
   imports: [
     FormsModule,
-    CloudspaceRoutingModule
+    CloudspaceRoutingModule,
+    CommonModule
   ]
-  /*,
-  providers: [
-    CloudSpaceResolve,
-    HttpService
-  ]*/
 })
 export class CloudspaceModule {}
