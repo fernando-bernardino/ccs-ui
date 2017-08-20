@@ -30,6 +30,21 @@ export class HttpService {
         this.createAcceptJsonHeader());
   }
 
+  getCloudSpace(id: string): Observable<Response> {
+    return this.http.get(
+        this.apiBasePath + 'cloudspace/' + id, 
+        this.createAcceptJsonHeader());
+  }
+
+  updateCloudSpace(cloudSpace) {
+    return Observable.create((observer) => {
+      console.log('http');
+      console.log(cloudSpace);
+      observer.next(cloudSpace);
+      observer.complete();
+    });
+  }
+
   createBasicAuthorizationHeader(credentials: string): RequestOptions {
     var headers = new Headers();
     

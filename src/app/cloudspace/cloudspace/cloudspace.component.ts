@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { CloudSpace } from '../cloudspace-model';
 
 @Component({
   selector: 'app-cloudspace',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CloudspaceComponent implements OnInit {
 
-  constructor() { }
+  cloudspace;
+  
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.cloudspace = this.route.snapshot.data['cloudspace'];
   }
-
 }

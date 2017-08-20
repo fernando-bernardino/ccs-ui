@@ -1,3 +1,10 @@
-<p>
-  cloudspace works!
-</p>
+<div class="container">
+  <h2>Cloud space {{ cloudspace.name}}</h2>
+  <ul class="nav nav-tabs">
+    <li class="active"><a [routerLink]=''>Details</a></li>
+    <li><a [routerLink]='user'>Users</a></li>
+    <li><a [routerLink]='project'>Projects</a></li>
+  </ul>
+
+  <router-outlet></router-outlet>
+</div>

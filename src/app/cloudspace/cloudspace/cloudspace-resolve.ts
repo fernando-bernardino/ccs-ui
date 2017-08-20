@@ -6,11 +6,11 @@ import { CloudSpace } from '../cloudspace-model';
 import { CloudspaceService } from '../cloudspace.service';
 
 @Injectable()
-export class CloudSpacesResolver implements Resolve<CloudSpace []> {
+export class CloudSpaceResolver implements Resolve<CloudSpace> {
 
   constructor(private cloudspaceService: CloudspaceService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<CloudSpace[]> | CloudSpace[] {
-    return this.cloudspaceService.getCloudSpaces();
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<CloudSpace> | CloudSpace {
+    return this.cloudspaceService.getCloudSpace(route.params['id']);
   }
 }
